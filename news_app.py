@@ -104,38 +104,8 @@ Provide a comprehensive, accurate response based on these articles.
 """
     return prompt
 
-def invoke_bedrock(prompt_text, max_tokens=800, temperature=0.3, top_p=0.9):
-    """Invoke AWS Bedrock for AI response"""
-    try:
-        credentials = get_credentials(USERNAME, PASSWORD)
-        bedrock_runtime = boto3.client(
-            "bedrock-runtime",
-            region_name=BEDROCK_REGION,
-            aws_access_key_id=credentials["AccessKeyId"],
-            aws_secret_access_key=credentials["SecretKey"],
-            aws_session_token=credentials["SessionToken"],
-        )
-
-        payload = {
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-            "top_p": top_p,
-            "messages": [{"role": "user", "content": prompt_text}]
-        }
-
-        response = bedrock_runtime.invoke_model(
-            body=json.dumps(payload),
-            modelId=MODEL_ID,
-            contentType="application/json",
-            accept="application/json"
-        )
-
-        result = json.loads(response["body"].read())
-        return result["content"][0]["text"]
-    
-    except Exception as e:
-        return f"I apologize, but I'm currently unable to connect to the AI service. Error: {str(e)}\n\nHowever, I can still show you the relevant news articles that match your query."
+def invoke_bedrock(prompt_text, **kwargs):
+    return "🤖 Demo mode active — AI response not available on Streamlit Cloud.\n\nHere's how your prompt would be processed:\n\n" + prompt_text[:600]
 
 def apply_category_filter(articles, news_category):
     """Return articles filtered by selected category, or all if 'All News'."""
