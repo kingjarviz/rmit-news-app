@@ -321,18 +321,18 @@ with col1:
     
     # Load news data once and cache it
     if not st.session_state.articles:
-    with st.spinner("🔄 Loading cached sample news..."):
-        st.session_state.articles = rmit_scraper.load_news_cache() or [
-            {
-                "title": "RMIT launches AI innovation hub",
-                "link": "https://www.rmit.edu.au/news",
-                "summary": "RMIT University unveils its new AI and technology initiative.",
-                "published": "Fri, 31 Oct 2025 13:21:50 GMT",
-                "days_ago": 0,
-                "category": "Technology",
-                "source": "demo_cache"
-            }
-        ]
+        with st.spinner("🔄 Loading cached sample news..."):
+            st.session_state.articles = rmit_scraper.load_news_cache() or [
+                {
+                    "title": "RMIT launches AI innovation hub",
+                    "link": "https://www.rmit.edu.au/news",
+                    "summary": "RMIT University unveils its new AI and technology initiative.",
+                    "published": "Fri, 31 Oct 2025 13:21:50 GMT",
+                    "days_ago": 0,
+                    "category": "Technology",
+                    "source": "demo_cache"
+                }
+            ]
     
     articles = st.session_state.articles
     
